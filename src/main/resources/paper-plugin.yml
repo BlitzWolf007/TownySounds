@@ -1,7 +1,7 @@
 name: TownySounds
-version: '0.1'
+version: "$version"
 main: blitzwolf007.townySounds.TownySounds
-api-version: '1.20'
+api-version: "$apiVersion"
 dependencies:
   server:
     Towny:
