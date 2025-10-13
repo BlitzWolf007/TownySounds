@@ -24,8 +24,7 @@ public class Config {
         pl.saveConfig();
     }
 
-    public static void reload()
-    {
+    public static void reload() {
         pl.reloadConfig();
         config = pl.getConfig();
 
@@ -37,25 +36,19 @@ public class Config {
         pl.saveConfig();
     }
 
-    public static SoundTriplet getSoundTriplet(Class cls, Class eventCls) {
-        SoundTriplet st = new SoundTriplet();
-
+    public static SoundTriplet getSoundTriplet(Class<?> cls, Class<?> eventCls) {
         String path = cls.getSimpleName() + "." + eventCls.getSimpleName();
         String soundName = config.getString(path + ".sound");
         float volume = (float) config.getDouble(path + ".volume");
         float pitch = (float) config.getDouble(path + ".pitch");
 
         if (soundName.equalsIgnoreCase("none"))
-            st.sound = null;
-        else
-            st.sound = soundName;
-        st.volume = volume;
-        st.pitch = pitch;
+            soundName = null;
 
-        return  st;
+        return new SoundTriplet(soundName, volume, pitch);
     }
 
-    private static void createEventFields(Class cls) {
+    private static void createEventFields(Class<?> cls) {
         for (Method method : cls.getDeclaredMethods()) {
             if (method.isAnnotationPresent(EventHandler.class)) {
                 Class<?>[] params = method.getParameterTypes();
