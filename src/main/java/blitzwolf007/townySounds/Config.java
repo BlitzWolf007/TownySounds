@@ -19,6 +19,7 @@ public class Config {
         config = plugin.getConfig();
 
         createEventFields(NationEvents.class);
+        createEventFields(OtherEvents.class);
         createEventFields(TownEvents.class);
 
         config.options().copyDefaults(true);
@@ -31,19 +32,29 @@ public class Config {
         config = pl.getConfig();
 
         createEventFields(NationEvents.class);
+        createEventFields(OtherEvents.class);
         createEventFields(TownEvents.class);
 
         config.options().copyDefaults(true);
         pl.saveConfig();
     }
 
-    public static Sound getSound(Class cls, Class eventCls) {
+    public static SoundTriplet getSoundTriplet(Class cls, Class eventCls) {
+        SoundTriplet st = new SoundTriplet();
+
         String path = cls.getSimpleName() + "." + eventCls.getSimpleName();
-        String soundName = config.getString(path);
+        String soundName = config.getString(path + ".sound");
+        float volume = (float) config.getDouble(path + ".volume");
+        float pitch = (float) config.getDouble(path + ".pitch");
+
         if (soundName.equalsIgnoreCase("none"))
-            return null;
+            st.sound = null;
         else
-            return Sound.valueOf(soundName);
+            st.sound = Sound.valueOf(soundName);
+        st.volume = volume;
+        st.pitch = pitch;
+
+        return  st;
     }
 
     private static void createEventFields(Class cls) {
@@ -52,7 +63,9 @@ public class Config {
                 Class<?>[] params = method.getParameterTypes();
                 if (params.length == 1 && Event.class.isAssignableFrom(params[0])) {
                     String path = cls.getSimpleName() + "." + params[0].getSimpleName();
-                    config.addDefault(path, "ENTITY_PLAYER_LEVELUP");
+                    config.addDefault(path + ".sound", "ENTITY_PLAYER_LEVELUP");
+                    config.addDefault(path + ".volume", 1f);
+                    config.addDefault(path + ".pitch", 1f);
                 }
             }
         }

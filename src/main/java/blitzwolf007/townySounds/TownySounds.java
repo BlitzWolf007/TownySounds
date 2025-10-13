@@ -9,8 +9,10 @@ public final class TownySounds extends JavaPlugin {
         this.getCommand("townysounds").setExecutor(new Commands());
 
         getServer().getPluginManager().registerEvents(new NationEvents(), this);
+        getServer().getPluginManager().registerEvents(new OtherEvents(), this);
         getServer().getPluginManager().registerEvents(new TownEvents(), this);
 
         Config.init(this);
     }
+
 }
