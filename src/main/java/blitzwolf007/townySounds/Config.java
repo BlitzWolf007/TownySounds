@@ -1,13 +1,11 @@
 package blitzwolf007.townySounds;
 
-import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Config {
 
@@ -50,7 +48,7 @@ public class Config {
         if (soundName.equalsIgnoreCase("none"))
             st.sound = null;
         else
-            st.sound = Sound.valueOf(soundName);
+            st.sound = soundName;
         st.volume = volume;
         st.pitch = pitch;
 
@@ -63,7 +61,7 @@ public class Config {
                 Class<?>[] params = method.getParameterTypes();
                 if (params.length == 1 && Event.class.isAssignableFrom(params[0])) {
                     String path = cls.getSimpleName() + "." + params[0].getSimpleName();
-                    config.addDefault(path + ".sound", "ENTITY_PLAYER_LEVELUP");
+                    config.addDefault(path + ".sound", "minecraft:entity.player.levelup");
                     config.addDefault(path + ".volume", 1f);
                     config.addDefault(path + ".pitch", 1f);
                 }

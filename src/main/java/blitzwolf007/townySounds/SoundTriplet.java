@@ -1,9 +1,7 @@
 package blitzwolf007.townySounds;
 
-import org.bukkit.Sound;
-
 public class SoundTriplet {
-    Sound sound;
+    String sound;
     float volume;
     float pitch;
 }

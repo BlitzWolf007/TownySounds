@@ -1,0 +1,9 @@
+name: TownySounds
+version: '0.1'
+main: blitzwolf007.townySounds.TownySounds
+api-version: '1.20'
+dependencies:
+  server:
+    Towny:
+      load: BEFORE
+      required: true

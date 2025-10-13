@@ -1,9 +1,13 @@
 package blitzwolf007.townySounds;
 
+import com.palmergames.bukkit.towny.event.NewTownEvent;
+import com.palmergames.bukkit.towny.event.PreDeleteTownEvent;
+import com.palmergames.bukkit.towny.event.TownAddResidentEvent;
+import com.palmergames.bukkit.towny.event.TownInvitePlayerEvent;
+import com.palmergames.bukkit.towny.event.TownRemoveResidentEvent;
 import com.palmergames.bukkit.towny.event.town.TownMayorChangedEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import com.palmergames.bukkit.towny.event.*;
 
 public class TownEvents implements Listener {
 
