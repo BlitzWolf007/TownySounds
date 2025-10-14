@@ -5,5 +5,5 @@ api-version: "$apiVersion"
 dependencies:
   server:
     Towny:
-      load: BEFORE
+      load: AFTER
       required: true

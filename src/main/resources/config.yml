@@ -1,0 +1,108 @@
+# https://townyadvanced.github.io/Towny/javadoc/prerelease/com/palmergames/bukkit/towny/event/package-summary.html
+# https://townyadvanced.github.io/Towny/javadoc/prerelease/com/palmergames/bukkit/towny/event/town/package-summary.html
+# https://townyadvanced.github.io/Towny/javadoc/prerelease/com/palmergames/bukkit/towny/event/nation/package-summary.html
+
+events:
+  NewNationEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: everyone
+  PreDeleteNationEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: everyone
+  NationKingChangeEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getNation
+  NationInviteTownEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getInvite.getSender
+  NationAddTownEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getNation
+  NationRemoveTownEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getNation
+  NationRequestAllyNationEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getInvite.getSender
+  NationPreAddAllyEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getNation
+  NationRemoveAllyEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getNation
+  NationAddEnemyEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getNation
+  NationRemoveEnemyEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getNation
+  NewTownEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: everyone
+  PreDeleteTownEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: everyone
+  TownMayorChangedEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: town
+    path: getTown
+  TownInvitePlayerEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: town
+    path: getInvite.getSender
+  TownAddResidentEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: town
+    path: getTown
+  TownRemoveResidentEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: town
+    path: getTown
+  NewDayEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: everyone
