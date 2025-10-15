@@ -17,7 +17,7 @@ Requires the `townysounds.reload` permission.
 
 sound is one the same sounds that autocomplete in the `/playsound` command
 
-the event key (eg NewDayEvent) is a Towny even, these can be found in the javadocs such as
+the event key (eg NewDayEvent) is a Towny event, these can be found in the javadocs such as
 
 [Main Events](https://townyadvanced.github.io/Towny/javadoc/prerelease/com/palmergames/bukkit/towny/event/package-summary.html)
 
