@@ -1,6 +1,7 @@
 # https://townyadvanced.github.io/Towny/javadoc/prerelease/com/palmergames/bukkit/towny/event/package-summary.html
 # https://townyadvanced.github.io/Towny/javadoc/prerelease/com/palmergames/bukkit/towny/event/town/package-summary.html
 # https://townyadvanced.github.io/Towny/javadoc/prerelease/com/palmergames/bukkit/towny/event/nation/package-summary.html
+# the sounds (eg minecraft:entity.player.levelup) are the same ones that autocomplete in /playsound command
 
 events:
   NewNationEvent:
