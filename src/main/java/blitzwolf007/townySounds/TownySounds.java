@@ -69,37 +69,28 @@ public final class TownySounds extends JavaPlugin implements Listener {
                 }
             }
 
-            boolean played = switch (notifier) {
+            switch (notifier) {
                 case "everyone" -> {
                     Utils.notifyEveryone(entry.st);
-                    yield true;
                 }
                 case "town" -> {
                     if (target instanceof Town t) {
                         Utils.notifyTown(t, entry.st);
-                        yield true;
                     } else {
                         getLogger().warning("target not instance of Town for " + event.getClass().getName());
-                        yield false;
                     }
                 }
                 case "nation" -> {
                     if (target instanceof Nation n) {
                         Utils.notifyNation(n, entry.st);
-                        yield true;
                     } else {
                         getLogger().warning("target not instance of Nation for " + event.getClass().getName());
-                        yield false;
                     }
                 }
                 default -> {
                     getLogger().warning("unknown notifier '" + notifier + "' for " + event.getClass().getName());
-                    yield false;
                 }
             };
-
-            if (played)
-                getLogger().info("sound playback completed for event: " + event.getClass().getSimpleName());
         };
 
         new PaperCommandManager(this).registerCommand(new ReloadCommand());
@@ -121,6 +112,7 @@ public final class TownySounds extends JavaPlugin implements Listener {
             String sound = eventsSec.getString(eventKey + ".sound");
             if (sound == null || sound.equalsIgnoreCase("none"))
                 continue;
+            eventKey = eventKey.replace("$", ".");
 
             float volume = (float) eventsSec.getDouble(eventKey + ".volume", 1.0);
             float pitch = (float) eventsSec.getDouble(eventKey + ".pitch", 1.0);
@@ -130,35 +122,26 @@ public final class TownySounds extends JavaPlugin implements Listener {
             SoundTriplet st = new SoundTriplet(sound, volume, pitch);
 
             Class<? extends Event> eventClass = null;
-            if (!eventKey.contains(".")) {
-                String[] prefixes = {
-                        "com.palmergames.bukkit.towny.event.",
-                        "com.palmergames.bukkit.towny.event.nation.",
-                        "com.palmergames.bukkit.towny.event.town."
-                };
-                for (String prefix : prefixes) {
-                    try {
-                        Class<?> clazz = Class.forName(prefix + eventKey);
-                        if (Event.class.isAssignableFrom(clazz)) {
-                            eventClass = (Class<? extends Event>) clazz;
-                            break;
-                        }
-                    } catch (ClassNotFoundException e) {
-                        getLogger().warning("Class not found for " + prefix + eventKey + ": " + e.getMessage());
-                    }
-                }
-            } else {
-                // full name was configd
+            String[] prefixes = {
+                    "",
+                    "com.palmergames.bukkit.towny.event.",
+                    "com.palmergames.bukkit.towny.event.nation.",
+                    "com.palmergames.bukkit.towny.event.town."
+            };
+            boolean aPrefixWorked = false;
+            for (String prefix : prefixes) {
                 try {
-                    Class<?> clazz = Class.forName(eventKey);
+                    Class<?> clazz = Class.forName(prefix + eventKey);
                     if (Event.class.isAssignableFrom(clazz)) {
                         eventClass = (Class<? extends Event>) clazz;
+                        aPrefixWorked = true;
+                        break;
                     }
-                } catch (ClassNotFoundException e) {
-                    getLogger().warning("event class not found: " + eventKey + ": " + e.getMessage());
-                    continue;
+                } catch (ClassNotFoundException ignored) {
                 }
             }
+            if (!aPrefixWorked)
+                getLogger().warning("Class not found for " + eventKey + " with any prefix");
 
             if (eventClass == null) {
                 getLogger().warning(

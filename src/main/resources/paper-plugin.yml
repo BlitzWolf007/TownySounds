@@ -2,6 +2,7 @@ name: TownySounds
 version: "$version"
 main: blitzwolf007.townySounds.TownySounds
 api-version: "$apiVersion"
+folia-supported: true
 dependencies:
   server:
     Towny:

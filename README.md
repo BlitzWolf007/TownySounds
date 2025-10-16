@@ -55,3 +55,16 @@ events:
     notifier: town
     path: getTown
 ```
+
+you can also put the full event name if you know it such as `com.palmergames.bukkit.towny.event.nation.NationPreAddAllyEvent` but the yaml key must have the `.` characters replaced with `$` characters like
+
+```yaml
+  com$palmergames$bukkit$towny$event$nation$NationPreAddAllyEvent:
+    sound: minecraft:entity.player.levelup
+    volume: 1.0
+    pitch: 1.0
+    notifier: nation
+    path: getNation
+```
+
+if just the class name is added TownySounds will try the 3 common prefixes of `com.palmergames.bukkit.towny.event.`, `com.palmergames.bukkit.towny.event.nation.`, and `com.palmergames.bukkit.towny.event.town.`
